@@ -1,34 +1,23 @@
-import { mockGifs } from "./mock-data/gifs.mock"
+import GifList from "./gifs/GifList";
+import PreviousSearches from "./gifs/PreviousSearches";
+import { mockGifs } from "./mock-data/gifs.mock";
+import CustomHeader from "./shared/components/CustomHeader"
+import SearchBar from './shared/components/SearchBar';
+
+const test = ['Goku', 'Bleach', 'Dark Souls']
 
 const GifsApp = () => {
     return (
         <>
-            <div className="content-center">
-                <h1>Buscador de Gifs</h1>
-                <p>Encuentra tu Gif</p>
-            </div>
-            <div className="search-container">
-                <input type="text" placeholder="Buscar Gif" />
-                <button>Buscar</button>
-            </div>
-            <div className="previous-searches">
-                <ul className="previous-searches-list">
-                    <li>Goku</li>
-                    <li>Batman</li>
-                    <li>Dark Souls</li>
-                </ul>
-            </div>
-            <div className="gifs-container">
-                {
-                    mockGifs.map((gif) => (
-                        <div key={gif.id} className="gif-card">
-                            <img src={gif.url} alt={gif.title} />
-                            <h3>{gif.title}</h3>
-                            <p>{gif.width}x{gif.height}</p>
-                        </div>
-                    ))
-                }
-            </div>
+            <CustomHeader tittle="Buscador de Gifs" description="Los mejores Gifs" />
+
+            <SearchBar placeholder="Busca tu Gif" />
+
+            <PreviousSearches searches={test} />
+
+            <GifList gif={mockGifs} />
+
+
         </>
     )
 }
