@@ -5,17 +5,29 @@ import { mockGifs } from "./mock-data/gifs.mock";
 import CustomHeader from "./shared/components/CustomHeader"
 import SearchBar from './shared/components/SearchBar';
 
-const test = ['Goku', 'Bleach', 'Dark Souls']
+const searches = ['Goku', 'DC', 'One Piece']
 
 const GifsApp = () => {
-    const [previousSearch, setSearch] = useState(test);
+    const [previousSearch, setSearch] = useState(searches);
+
 
     const handleTermClicked = (term: string) => {
         console.log({ term })
     };
 
     const handleSearch = (query: string) => {
-        console.log({ query })
+        const nQuery = query.toLocaleLowerCase();
+
+        console.log({ nQuery });
+        if (!searches.includes(nQuery)) {
+            searches.unshift(nQuery)
+            searches.length > 5 && searches.pop()
+            setSearch([...searches])
+            console.log(previousSearch)
+        }
+
+
+
     }
 
     return (
@@ -39,3 +51,5 @@ const GifsApp = () => {
 }
 
 export default GifsApp
+
+
